@@ -1,0 +1,122 @@
+# RQ 1
+args = [
+    "main.py",
+
+#    "-specific_seeds", "[0]", # for missing seeds
+#    "-specific_seeds", "[1, 2, 3, 4]", # for missing seeds
+    "-specific_seeds", "None", # regular 5 random seeds (0-4)
+
+    "-rq", "rq1-priorization",  # actually applicable for all experiments
+#    "-rq", "rq2-retrain",
+
+    "-budget_list", "[0.01, 0.03, 0.05, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90]",
+
+    "-data_dir", "../data",
+
+    "-save_result", "True",
+#    "-save_result", "False",
+
+    "-load_prediction", "True",
+#    "-load_prediction", "False",
+
+    "-load_feature", "True",
+#    "-load_feature", "False",
+
+    "-load_hparam", "True",
+#    "-load_hparam", "False",
+
+    "-load_reliability", "True",
+#    "-load_reliability", "False",
+
+    "-n_workers", "1",  # for normal dataset
+#    "-n_workers", "4",
+
+#    "-device", "cpu",
+    "-device", "cuda",
+#    "-device", "mps",
+
+    "-cand_size", "all",  # all candidate set
+#    "-cand_size", "500"
+
+#    "-debug_mode", "True",
+    "-debug_mode", "False",
+#    "-downsample_ratio", "0.01",
+#    "-downsample_ratio", "0.05",
+#    "-downsample_ratio", "0.1",
+]
+
+cand_types = [
+    "nominal",
+#    "corrupted",
+#    "adversarial",
+]
+
+methods = [
+#   (1) Coverage-Based
+#    "nac-ctm",
+#    "nac-cam",
+#    "kmnc-ctm",
+#    "kmnc-cam",  # time-consuming
+
+#    (2) Surprise-Based
+#    "lsa",
+#    "pc-lsa",
+#    "pc-mlsa",
+#    "pc-dsa",  # time-consuming
+#    "pc-mdsa",
+#    "pc-mmdsa",
+
+#    (3) Uncertainty-Based
+#    "deepgini",
+#    "maxp",
+#    "margin",
+#    "entropy",
+#    "lof",
+#    "fast",
+#    "nns",
+
+#    (4) Failure Mechanism-Based
+#    "nss",  # only available for image datasets
+#    "ats",  # not available for binary classification task
+#    "rts",  # only available for image datasets
+#    "certpri",  # only available for image datasets
+#    "prima",  # only available for image datasets
+#    "datis_no_selection",
+#    "dufp",
+
+#    (5) Selection Methods
+#    "sets",
+#    "mcp_official",
+#    "datis",
+
+#    (6) ReMaP methods
+#    ---- default ----
+    "remap",  # default (fuse="rel", trust="global", beta="auto", omega="auto", relpow=4, alpha=0.3)
+
+#    ----Ablation(1): Uncertainty Fusion----
+#    "remap_fuse(student_only)",
+#    "remap_fuse(teacher_only)",
+
+#    ----Ablation(2): Reference Geometry Adaptation----
+#    "remap_omega(0)",  # w/o omega
+#    "remap_beta(0)",  # w/o beta
+#    "remap_beta(0)_omega(0)",  # w/o both
+
+#    ----Ablation(3): Choice of Reference Model----
+#    "remap_teacher(clip_vitl14)",  # default
+#    "remap_teacher(dinov2_vitb14)",
+#    "remap_teacher(siglip_so400m)",
+#    "remap_teacher(sup_vitl16)",
+]
+
+models = [
+    "MNIST-LeNet5",
+    "FM-ResNet20",
+    "C10-ResNet20",
+    "SVHN-VGG16",
+
+    "IM100Test-deit_base_patch16_224",
+
+    "ModelNet40-DGCNN",
+    "ESC50-AST",
+]
